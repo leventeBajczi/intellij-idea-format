@@ -15,4 +15,4 @@ runs:
   using: 'docker'
   image: 'docker://rycus86/intellij-idea:2022.3'
   args:
-    - /opt/idea/bin/format.sh -m '${{ inputs.file-mask }}' ${{ inputs.additional-options }}-r -s /github/workspace/${{ inputs.settings-file }} /github/workspace/
+    - /opt/idea/bin/format.sh -m '${{ inputs.file-mask }}' ${{ inputs.additional-options }} -r -s /github/workspace/${{ inputs.settings-file }} /github/workspace/
