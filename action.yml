@@ -1,0 +1,21 @@
+name: 'IntelliJ IDEA source formatter'
+description: 'Check and format source files using IntelliJ IDEA CE'
+inputs:
+  settings-file:
+    description: 'Path to the IntelliJ settings file'
+    required: true
+  file-mask:
+    description: 'File mask'
+    required: true
+  additional-options:
+    description: 'Additional format.sh options'
+    required: false
+    default: null
+outputs:
+  time:
+    description: 'The time it took to format the files'
+runs:
+  using: 'docker'
+  image: 'docker://rycus86/intellij-idea:2022.3'
+  args:
+    - /opt/idea/bin/format.sh -m '${{ inputs.file-mask }}' ${{ inputs.additional-options }}-r -s /github/workspace/${{ inputs.settings-file }} /github/workspace/
