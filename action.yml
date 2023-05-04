@@ -11,9 +11,6 @@ inputs:
     description: 'Additional format.sh options'
     required: false
     default: null
-outputs:
-  time:
-    description: 'The time it took to format the files'
 runs:
   using: 'docker'
   image: 'docker://rycus86/intellij-idea:2022.3'
