@@ -13,8 +13,7 @@ inputs:
     default: null
 runs:
   using: 'docker'
-  image: 'docker://rycus86/intellij-idea:2022.2'
-  options: --user root
+  image: 'Dockerfile'
   args:
     - bash
     - "-c"
