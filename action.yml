@@ -14,3 +14,7 @@ inputs:
 runs:
   using: 'docker'
   image: 'Dockerfile'
+  args:
+    - ${{ inputs.file-mask }}
+    - ${{ inputs.additional-options }}
+    - ${{ inputs.settings-file }}
