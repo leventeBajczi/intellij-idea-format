@@ -1,8 +1,18 @@
 #!/bin/bash
+filemask="$1"
+additional_options="$2"
+settings_file="$3"
+
 tempdir=$(mktemp)
-/home/levente/.local/share/JetBrains/Toolbox/apps/IDEA-U/ch-0/231.9011.34/bin/format.sh -m *java,*kts,*kt -dry -r -s ./doc/ThetaIntelliJCodeStyle.xml ./ 2>&1 | tee -a $tempdir/output
-formatted_well=$(cat $tempdir/output | grep "Formatted well" | wc -l)
-needs_reformatting=$(cat $tempdir/output | grep "Needs reformatting" | wc -l)
+/opt/idea/bin/format.sh -m "$filemask" $additional_options -r -s /github/workspace/"$settings_file" /github/workspace/ 2>&1 | tee -a $tempdir/output
+newly_formatted=$(cat $tempdir/output | grep "OK$" | wc -l)
+formatted_well=$(cat $tempdir/output | grep "Formatted well$" | wc -l)
+needs_reformatting=$(cat $tempdir/output | grep "Needs reformatting$" | wc -l)
+echo "Formatted ($newly_formatted)": 
+cat $tempdir/output | grep -o -P '(?<=Formatting ).*(?=...OK)'
+echo
+echo "==================="
+echo
 echo "Formatted well ($formatted_well)": 
 cat $tempdir/output | grep -o -P '(?<=Checking ).*(?=...Formatted well)'
 echo
