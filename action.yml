@@ -14,7 +14,3 @@ inputs:
 runs:
   using: 'docker'
   image: 'Dockerfile'
-  args:
-    - bash
-    - "-c"
-    - /opt/idea/bin/format.sh -m '${{ inputs.file-mask }}' ${{ inputs.additional-options }} -r -s /github/workspace/${{ inputs.settings-file }} /github/workspace/
