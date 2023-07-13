@@ -2,7 +2,7 @@ name: Deploy docker
 on:
   push:
     branches:
-      - main
+      - master
 
 permissions: write-all
 
