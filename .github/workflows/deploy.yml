@@ -1,4 +1,4 @@
-name: Linux build-test-deploy
+name: Deploy docker
 on:
   push:
     - master
