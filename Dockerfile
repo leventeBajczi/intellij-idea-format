@@ -3,7 +3,7 @@
 FROM debian
 
 RUN  \
-  apt-get update && apt-get install --no-install-recommends -y \
+  apt-get update -qq && apt-get install -qq --no-install-recommends -y \
   default-jdk gcc git openssh-client less curl \
   libxtst-dev libxext-dev libxrender-dev libfreetype6-dev \
   libfontconfig1 libgtk2.0-0 libxslt1.1 libxxf86vm1 \
