@@ -1,9 +1,10 @@
-Run `docker run -v $PWD:/github/workspace ghcr.io/leventebajczi/intellij-format:latest "*.java,*.kts,*.kt" "" "./<intellij-stylesheet.xml>"` to format the current working directtory's java, kts and kt files according to the stylesheet.
+# IntelliJ IDEA Foramt
 
+Run `docker run -v $PWD:/github/workspace ghcr.io/leventebajczi/intellij-format:latest "*.java,*.kts,*.kt" "" "./<intellij-stylesheet.xml>"` to format the current working directory's java, kts, and kt files according to the stylesheet.
 
 To use as an action:
 
-```
+```yaml
     - name: Reformat
       uses: leventeBajczi/intellij-idea-format@v1.0
       with:
@@ -18,4 +19,3 @@ To use as an action:
         branch: "code-reformat"
         title: '[AutoPR] Reformatted code'
 ```
-
