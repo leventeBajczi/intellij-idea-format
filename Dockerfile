@@ -10,8 +10,8 @@ RUN  \
   && rm -rf /var/lib/apt/lists/* \
   && useradd -ms /bin/bash developer
   
-ARG IDEA_VERSION=2024.2
-ARG IDEA_BUILD=2024.2.1
+ARG IDEA_VERSION=2025.2
+ARG IDEA_BUILD=2025.2.1
 ARG idea_local_dir=.IdeaIC${IDEA_VERSION}
 
 WORKDIR /opt/idea
