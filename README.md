@@ -1,4 +1,4 @@
-# IntelliJ IDEA Foramt
+# IntelliJ IDEA Format
 
 Run `docker run -v $PWD:/github/workspace ghcr.io/leventebajczi/intellij-format:latest "*.java,*.kts,*.kt" "" "./<intellij-stylesheet.xml>"` to format the current working directory's java, kts, and kt files according to the stylesheet.
 
