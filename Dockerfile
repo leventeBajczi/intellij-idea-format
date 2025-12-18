@@ -1,5 +1,3 @@
-# FROM rycus86/intellij-idea:2023.1.2
-
 FROM debian
 
 RUN  \
@@ -11,7 +9,7 @@ RUN  \
   && useradd -ms /bin/bash developer
   
 ARG IDEA_VERSION=2025.3
-ARG IDEA_BUILD=2025.3
+ARG IDEA_BUILD=2025.3.1
 ARG idea_local_dir=.Idea${IDEA_VERSION}
 
 WORKDIR /opt/idea
