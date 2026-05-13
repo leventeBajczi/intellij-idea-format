@@ -3,6 +3,7 @@ on:
   push:
     branches:
       - master
+  pull_request:
 
 permissions: write-all
 
@@ -12,6 +13,18 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+
+      - name: Docker meta
+        id: meta
+        uses: docker/metadata-action@030e881283bb7a6894de51c315a6bfe6a94e05cf # v6.0.0
+        with:
+          images: ghcr.io/leventebajczi/intellij-format
+          tags: |
+            type=raw,value=latest,enable={{is_default_branch}}
+            type=ref,event=branch
+            type=ref,event=pr
+            type=sha
+
       - name: Login to the Registry
         uses: docker/login-action@f4ef78c080cd8ba55a85445d5b36e214a81df20a
         with:
@@ -27,4 +40,6 @@ jobs:
         with:
           file: ./Dockerfile
           push: true
-          tags: ghcr.io/leventebajczi/intellij-format:latest
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+  
