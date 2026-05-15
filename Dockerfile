@@ -8,8 +8,8 @@ RUN  \
   && rm -rf /var/lib/apt/lists/* \
   && useradd -ms /bin/bash developer
   
-ARG IDEA_VERSION=2026.1
-ARG IDEA_BUILD=2026.1.1
+ARG IDEA_VERSION=2025.3
+ARG IDEA_BUILD=2025.3.5
 ARG idea_local_dir=.Idea${IDEA_VERSION}
 
 WORKDIR /opt/idea
