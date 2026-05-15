@@ -7,6 +7,10 @@ on:
 
 permissions: write-all
 
+concurrency:
+  group: "${{ github.workflow }}-${{ github.head_ref || github.ref }}-${{ github.event_name }}"
+  cancel-in-progress: true
+
 jobs:
   deploy-docker:
     runs-on: ubuntu-latest
