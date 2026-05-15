@@ -1,35 +1,16 @@
-FROM debian
+FROM debian:bookworm-slim
 
-RUN  \
-  apt-get update -qq && apt-get install -qq --no-install-recommends -y \
-  default-jdk gcc git openssh-client less curl \
-  libxtst-dev libxext-dev libxrender-dev libfreetype6-dev \
-  libfontconfig1 libgtk2.0-0 libxslt1.1 libxxf86vm1 \
-  && rm -rf /var/lib/apt/lists/* \
-  && useradd -ms /bin/bash developer
-  
-ARG IDEA_VERSION=2026.1
 ARG IDEA_BUILD=2026.1.1
-ARG idea_local_dir=.Idea${IDEA_VERSION}
+
+RUN apt-get update -qq \
+ && apt-get install -qq --no-install-recommends -y \
+      curl ca-certificates \
+      libfreetype6 libfontconfig1 libxtst6 libxext6 libxrender1 libxslt1.1 libxxf86vm1 \
+ && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /opt/idea
+RUN curl -fsSL "https://download.jetbrains.com/idea/idea-${IDEA_BUILD}.tar.gz" \
+    | tar --strip-components=1 -xz
 
-RUN echo "Preparing IntelliJ IDEA ${IDEA_BUILD} ..." \
-  && export idea_source=https://download.jetbrains.com/idea/idea-${IDEA_BUILD}.tar.gz \
-  && echo "Downloading ${idea_source} ..." \
-  && curl -fsSL $idea_source -o /opt/idea/installer.tgz \
-  && tar --strip-components=1 -xzf installer.tgz \
-  && rm installer.tgz
-
-USER developer
-ENV HOME=/home/developer
-
-RUN mkdir /home/developer/.Idea \
-  && ln -sf /home/developer/.Idea /home/developer/$idea_local_dir
-
-USER root
-
-COPY format.sh /format.sh
-RUN chmod +x /format.sh
-
+COPY --chmod=755 format.sh /format.sh
 ENTRYPOINT ["/format.sh"]
