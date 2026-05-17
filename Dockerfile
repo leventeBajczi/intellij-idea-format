@@ -1,7 +1,5 @@
 FROM debian:bookworm-slim
 
-ARG IDEA_BUILD=2025.3.1
-
 RUN apt-get update -qq \
  && apt-get install -qq --no-install-recommends -y \
       curl ca-certificates \
@@ -9,8 +7,9 @@ RUN apt-get update -qq \
  && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /opt/idea
+ARG IDEA_BUILD=2025.3.1
 RUN curl -fsSL "https://download.jetbrains.com/idea/idea-${IDEA_BUILD}.tar.gz" \
     | tar --strip-components=1 -xz
-
 COPY --chmod=755 format.sh /format.sh
+
 ENTRYPOINT ["/format.sh"]
