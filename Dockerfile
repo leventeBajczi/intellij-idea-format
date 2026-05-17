@@ -1,6 +1,6 @@
 FROM debian:bookworm-slim
 
-ARG IDEA_BUILD=2025.3.5
+ARG IDEA_BUILD=2026.1.2
 
 RUN apt-get update -qq \
  && apt-get install -qq --no-install-recommends -y \
