@@ -6,7 +6,7 @@ To use as an action:
 
 ```yaml
     - name: Reformat
-      uses: leventeBajczi/intellij-idea-format@v1.0
+      uses: leventeBajczi/intellij-idea-format@idea-2026.2.1
       with:
         settings-file: "./doc/ThetaIntelliJCodeStyle.xml"
         file-mask: "*.java,*.kts,*.kt"
