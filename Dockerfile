@@ -7,7 +7,7 @@ RUN apt-get update -qq \
  && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /opt/idea
-ARG IDEA_BUILD=2025.3.1
+ARG IDEA_BUILD=2026.2.1
 RUN curl -fsSL "https://download.jetbrains.com/idea/idea-${IDEA_BUILD}.tar.gz" \
     | tar --strip-components=1 -xz
 COPY --chmod=755 format.sh /format.sh
